@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':freetype'
 rootProject.name = "FreetypeDemo"
