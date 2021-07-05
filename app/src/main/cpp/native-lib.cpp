@@ -26,8 +26,8 @@ uint8_t libft_load_file(const char *path) {
     //Each character will be rendered in a square of resolution*resolution pixels
     FT_Set_Pixel_Sizes(fontFace, resolution, resolution);
 
-    LOGD("libft_load_file %s face=%p num_glyphs=%d family_name=%s",
-         path, fontFace, fontFace->num_glyphs, fontFace->family_name);
+    LOGD("libft_load_file %s face=%p num_glyphs=%ld family_name=%s style_name=%s",
+         path, fontFace, fontFace->num_glyphs, fontFace->family_name, fontFace->style_name);
 
     return 0;
 }
@@ -38,6 +38,10 @@ uint8_t libft_init(int size) {
         error = 1;
         return error;
     }
+
+    int major, minor, patch;
+    FT_Library_Version(library, &major, &minor, &patch);
+    LOGI("FREETYPE version: %d.%d.%d", major, minor, patch);
 
     LOGE("==========libft_init ok size=%d lib=%p", size, library);
 
